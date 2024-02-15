@@ -74,7 +74,7 @@ app.post("/api/recipes", (req, res) => {
     name: Joi.string().required(),
     ingredients: Joi.array().items(Joi.string()).required(),
     steps: Joi.array().items(Joi.string()).required(),
-    tag: Joi.array().items(Joi.string()).optional(), // tag is now an array
+    tag: Joi.array().items(Joi.string()).required(),
   });
 
   const { error } = schema.validate(req.body);
