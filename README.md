@@ -4,7 +4,7 @@
 
 - **👤 [Nielven Mascarinas](https://www.facebook.com/NielvenMascarinas/)**
 - **👤 [Cindy Rosales](https://www.facebook.com/cindy.riofloridorosales)**
-- **👤 [Maylyn Pelobello](https://www.facebook.com/maylyn.pelobello.7)**
+- **👤 [Aliza Rabe](https://www.facebook.com/maylyn.pelobello.7)**
 - **👤 [Ryan Natividad](https://www.facebook.com/Ryan3024)**
 
 ## 💡 About the Application
