@@ -148,7 +148,7 @@ This project uses several dependencies to function correctly. Here's a brief des
 
 ## Dependencies
 
-### Express
+### 🚀 Express
 
 **Version:** ^4.18.2
 
@@ -156,7 +156,7 @@ This project uses several dependencies to function correctly. Here's a brief des
 
 **Usage:** In this project, Express is used to create the server and manage the API routes.
 
-### Joi
+### 🔍 Joi
 
 **Version:** ^17.12.1
 
@@ -166,7 +166,7 @@ This project uses several dependencies to function correctly. Here's a brief des
 
 ## DevDependencies
 
-### Nodemon
+### 🔄 Nodemon
 
 **Version:** ^3.0.3
 
