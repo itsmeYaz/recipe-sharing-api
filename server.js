@@ -8,14 +8,15 @@ app.use(express.json());
 
 //Get Request
 app.get("/", (req, res) => {
-  res.send(recipesData);
+  res.send("Welcome to the root route of the API.");
 });
 
+//Shows all the data
 app.get("/api/recipes", (req, res) => {
   res.send(recipesData);
 });
 
-//get a certain recipe by adding a argument
+//get a certain recipe by adding a ID argument
 app.get("/api/recipes/:id", (req, res) => {
   const schema = Joi.object({
     id: Joi.number().integer().required(),
@@ -30,17 +31,27 @@ app.get("/api/recipes/:id", (req, res) => {
   res.send(recipe);
 });
 
+// get recipes by name
+app.get("/api/recipes/name/:name", (req, res) => {
+  const name = req.params.name.replace(/\s/g, "");
+  const regex = new RegExp(name.split("").join("\\s*"), "i");
+
+  const recipes = recipesData.filter((c) => regex.test(c.name));
+
+  if (recipes.length === 0)
+    return res
+      .status(404)
+      .send({ message: "No recipes found with the given name." });
+  res.send(recipes);
+});
+
 //get recipes by tag
 app.get("/api/recipes/tag/:tag", (req, res) => {
-  const schema = Joi.object({
-    tag: Joi.string().required(),
-  });
+  const tag = req.params.tag.replace(/\s/g, "");
+  const regex = new RegExp("^" + tag.split("").join("\\s*") + "$", "i");
 
-  const { error } = schema.validate(req.params);
-  if (error) return res.status(400).send(error.details[0].message);
+  const recipes = recipesData.filter((c) => c.tag.some((t) => regex.test(t)));
 
-  const tag = req.params.tag.toLowerCase();
-  const recipes = recipesData.filter((c) => c.tag.toLowerCase() === tag);
   if (recipes.length === 0)
     return res
       .status(404)
@@ -49,12 +60,12 @@ app.get("/api/recipes/tag/:tag", (req, res) => {
 });
 
 //Post Request
-app.post("/api/recipes/create", (req, res) => {
+app.post("/api/recipes", (req, res) => {
   const schema = Joi.object({
     name: Joi.string().required(),
     ingredients: Joi.array().items(Joi.string()).required(),
     steps: Joi.array().items(Joi.string()).required(),
-    tag: Joi.string().optional(),
+    tag: Joi.array().items(Joi.string()).optional(), // tag is now an array
   });
 
   const { error } = schema.validate(req.body);
@@ -65,7 +76,7 @@ app.post("/api/recipes/create", (req, res) => {
     name: req.body.name,
     ingredients: req.body.ingredients,
     steps: req.body.steps,
-    tag: req.body.tag,
+    tag: req.body.tag || [], // if tag is not provided, default to an empty array
   };
 
   recipesData.push(newRecipe);
@@ -73,32 +84,30 @@ app.post("/api/recipes/create", (req, res) => {
 });
 
 //PUT request
-app.put("/api/recipes/update/:id", (req, res) => {
+app.put("/api/recipes/:id", (req, res) => {
   const ID = parseInt(req.params.id);
   const recipe = recipesData.find((c) => c.id === ID);
   if (!recipe) return res.status(404).send({ message: "Recipe not found." });
 
   const schema = Joi.object({
     id: Joi.number().integer(),
-    name: Joi.string().required(),
-    ingredients: Joi.array().items(Joi.string()).required(),
-    steps: Joi.array().items(Joi.string()).required(),
-    tag: Joi.string().required(),
+    name: Joi.string(),
+    ingredients: Joi.array().items(Joi.string()),
+    steps: Joi.array().items(Joi.string()),
+    tag: Joi.array().items(Joi.string()),
   });
 
   const { error } = schema.validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  recipe.name = req.body.name;
-  recipe.ingredients = req.body.ingredients;
-  recipe.steps = req.body.steps;
-  recipe.tag = req.body.tag;
+  // Merge the existing recipe with the new data from req.body
+  Object.assign(recipe, req.body);
 
   res.send(recipe);
 });
 
 //delete request
-app.delete("/api/recipes/delete/:id", (req, res) => {
+app.delete("/api/recipes/:id", (req, res) => {
   const ID = parseInt(req.params.id);
   const recipe = recipesData.find((c) => c.id === ID);
   if (!recipe) return res.status(404).send({ message: "Recipe not found." });

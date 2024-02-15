@@ -1,3 +1,13 @@
+/**
+ * This module exports an array of recipe objects.
+ * Each recipe object has the following properties:
+ * - id: a unique identifier for the recipe
+ * - name: the name of the recipe
+ * - ingredients: an array of strings, each representing an ingredient needed for the recipe
+ * - steps: an array of strings, each representing a step in the recipe
+ * - tag: an array of strings, each representing a category or tag associated with the recipe
+ */
+
 const recipesData = [
   {
     id: 1,
@@ -22,7 +32,7 @@ const recipesData = [
       "7. Season with salt and pepper to taste.",
       "8. Serve hot and enjoy!",
     ],
-    tag: "Lunch",
+    tag: ["Lunch"],
   },
   {
     id: 2,
@@ -45,7 +55,7 @@ const recipesData = [
       "5. Optional: For a crispier texture, you can fry the cooked meat in oil until golden brown.",
       "6. Serve hot with rice and enjoy!",
     ],
-    tag: "Lunch",
+    tag: ["Lunch"],
   },
   {
     id: 3,
@@ -72,7 +82,7 @@ const recipesData = [
       "8. Spread condiments of your choice on the top half of the buns.",
       "9. Close the burgers with the top half of the buns, and serve immediately.",
     ],
-    tag: "Lunch",
+    tag: ["Lunch"],
   },
   {
     id: 4,
@@ -101,7 +111,7 @@ const recipesData = [
       "6. Season with salt and pepper to taste.",
       "7. Serve hot with bagoong on the side.",
     ],
-    tag: "Main Dish",
+    tag: ["Lunch"],
   },
   {
     id: 5,
@@ -123,7 +133,7 @@ const recipesData = [
       "5. Remove the pork belly from the oil and let it drain on a wire rack or paper towels.",
       "6. Slice the lechon kawali into serving portions and serve hot with a dipping sauce of vinegar, soy sauce, and chopped onions.",
     ],
-    tag: "Main Dish",
+    tag: ["Lunch"],
   },
 ];
 
