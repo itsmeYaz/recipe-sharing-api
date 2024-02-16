@@ -165,11 +165,15 @@ app.post("/api/users", (req, res) => {
   const schema = Joi.object({
     name: Joi.string().required(),
     email: Joi.string().email().required(),
-    password: Joi.string().required(),
+    password: Joi.string().min(8).required(),
   });
 
   const { error } = schema.validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
+
+  const emailExists = users.find((user) => user.email === req.body.email);
+  if (emailExists)
+    return res.status(400).send("User with this email already exists.");
 
   const user = {
     id: users.length + 1,
