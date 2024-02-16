@@ -8,7 +8,7 @@
  * - tag: an array of strings, each representing a category or tag associated with the recipe
  */
 
-const recipesData = [
+const recipes = [
   {
     id: 1,
     name: "Sinigang",
@@ -111,7 +111,7 @@ const recipesData = [
       "6. Season with salt and pepper to taste.",
       "7. Serve hot with bagoong on the side.",
     ],
-    tag: ["Lunch"],
+    tag: ["Lunch", "Dinner"],
   },
   {
     id: 5,
@@ -137,4 +137,4 @@ const recipesData = [
   },
 ];
 
-module.exports = { recipesData };
+module.exports = { recipes };
