@@ -29,11 +29,15 @@ Users can create an account, update their information, and delete their account.
 
 The application includes robust error handling. If an error occurs, the application will return a helpful error message and, in development mode, a stack trace.
 
+### 🌐 API Interaction without Local Setup
+
+Users can interact with the API without setting it up locally by using API testing software like Postman or Insomnia. The API is deployed on a server, and these tools allow users to send HTTP requests to the API endpoints. This allows users to create, read, update, and delete recipes and user accounts directly from their software interface, without the need to setup the API locally.
+
 ## 🎯 Purpose
 
 The purpose of this application is to provide a simple and efficient way to manage and search for recipes.
 
-## ⚙ Local Setup
+# ⚙ Local Setup
 
 Follow these steps to set up the application locally:
 
@@ -59,11 +63,55 @@ The server will start, and you should see a message like <span style="color:gree
 
 4. **Test the Application**: You can now test the application by sending requests to <span style="color:green"><strong>http://localhost:8080/api/recipes</strong></span>. You can use a tool like Postman to send HTTP requests.
 
-# 👥 User API Endpoint Guide
+# 🌐 Prefer Not to Set Up Locally?
+
+# 🎉 Live API Testing
+
+The server has been deployed and is available for testing. You can interact with the API using different HTTP methods (GET, POST, PUT, DELETE).
+
+API Base URL:
+
+```bash
+https://recipes-sharing-api.onrender.com
+```
+
+### 👥 Get All Users
+
+**Endpoint:** `https://recipes-sharing-api.onrender.com/api/users`
+
+**Method:** `GET`
+
+**Note:** Different endpoints may require `GET`, `POST`, `PUT`, or `DELETE` methods. See each endpoint's documentation.
+
+**Example Request:**
+
+```bash
+GET https://recipes-sharing-api.onrender.com/api/users
+```
+
+### 🍽️ Get All Recipes
+
+**Endpoint:** `https://recipes-sharing-api.onrender.com/api/recipes`
+
+**Method:** `GET`
+
+**Description:** Returns all recipes.
+
+**Note:** Different endpoints may require `GET`, `POST`, `PUT`, or `DELETE` methods. See each endpoint's documentation.
+
+**Example Request:**
+
+```bash
+ GET https://recipes-sharing-api.onrender.com/api/recipes
+```
+
+# 📚 Endpoints Guide
+
+## 👥 User API Endpoint Guide
 
 This API allows you to manage users. Here's how you can use the endpoints:
 
-## 📚 Get All Users
+### 📚 Get All Users
 
 **Endpoint:** `/api/users`
 
@@ -71,7 +119,7 @@ This API allows you to manage users. Here's how you can use the endpoints:
 
 **Description:** Returns all users.
 
-## ➕ Create a User
+### ➕ Create a User
 
 **Endpoint:** `/api/users`
 
@@ -85,7 +133,7 @@ This API allows you to manage users. Here's how you can use the endpoints:
 - `email`: The email of the user (required).
 - `password`: The password of the user (required).
 
-## 🔄 Update a User
+### 🔄 Update a User
 
 **Endpoint:** `/api/users/:id`
 
@@ -100,7 +148,7 @@ This API allows you to manage users. Here's how you can use the endpoints:
 
 Only the fields provided in the body will be updated.
 
-## ❌ Delete a User
+### ❌ Delete a User
 
 **Endpoint:** `/api/users/:id`
 
@@ -108,11 +156,11 @@ Only the fields provided in the body will be updated.
 
 **Description:** Deletes an existing user.
 
-# 🍽️ Recipe API Endpoint Guide
+## 🍽️ Recipe API Endpoint Guide
 
 This API allows you to manage recipes. Here's how you can use the endpoints:
 
-## 📚 Get All Recipes
+### 📚 Get All Recipes
 
 **Endpoint:** `/api/recipes`
 
@@ -120,7 +168,7 @@ This API allows you to manage recipes. Here's how you can use the endpoints:
 
 **Description:** Returns all recipes.
 
-## 🔍 Get a Specific Recipe by ID
+### 🔍 Get a Specific Recipe by ID
 
 **Endpoint:** `/api/recipes/:id`
 
@@ -132,7 +180,7 @@ This API allows you to manage recipes. Here's how you can use the endpoints:
 
 - `id`: The ID of the recipe.
 
-## 📖 Get Recipes by Name
+### 📖 Get Recipes by Name
 
 **Endpoint:** `/api/recipes/name/:name`
 
@@ -144,7 +192,7 @@ This API allows you to manage recipes. Here's how you can use the endpoints:
 
 - `name`: The name of the recipe.
 
-## 🏷️ Get Recipes by Tag
+### 🏷️ Get Recipes by Tag
 
 **Endpoint:** `/api/recipes/tag/:tag`
 
@@ -156,7 +204,7 @@ This API allows you to manage recipes. Here's how you can use the endpoints:
 
 - `tag`: The tag of the recipe.
 
-## ➕ Create a New Recipe
+### ➕ Create a New Recipe
 
 **Endpoint:** `/api/recipes`
 
@@ -171,7 +219,7 @@ This API allows you to manage recipes. Here's how you can use the endpoints:
 - `steps`: The steps of the recipe (required).
 - `tag`: The tags of the recipe (optional).
 
-## 🔄 Update a Recipe
+### 🔄 Update a Recipe
 
 **Endpoint:** `/api/recipes/:id`
 
@@ -190,7 +238,7 @@ This API allows you to manage recipes. Here's how you can use the endpoints:
 - `steps`: The steps of the recipe (optional).
 - `tag`: The tags of the recipe (optional).
 
-## ❌ Delete a Recipe
+### ❌ Delete a Recipe
 
 **Endpoint:** `/api/recipes/:id`
 
