@@ -11,14 +11,25 @@
 
 This application is a Recipe Sharing System built using Node.js, and Express. It provides a RESTful API for creating, reading, updating, and deleting (CRUD) recipes.
 
-### Features
+## 🌟 Features
 
-1. **Recipe Management**: Users can create new recipes, view all recipes, view a specific recipe by its ID or name, update existing recipes, and delete recipes.
-2. **Tag-based Search**: Users can search for recipes based on tags. This feature allows users to find all recipes that fall under a specific category, such as 'Vegetarian', 'Gluten-free', etc.
-3. **Name-based Search**: Users can search for recipes by their names. This feature allows users to find a specific recipe quickly if they know its name.
-4. **Error Handling**: The application includes robust error handling. If an error occurs, the application will return a helpful error message and, in development mode, a stack trace.
+### 🍽️ Recipe Management
 
-### Purpose
+Users can create new recipes, view all recipes, view a specific recipe by its ID or name, update existing recipes, and delete recipes.
+
+### 🔍 Search
+
+Users can search for recipes based on tags or their names. This allows users to find all recipes that fall under a specific category, such as 'Vegetarian', 'Gluten-free', etc., or find a specific recipe quickly if they know its name.
+
+### 👥 User Management
+
+Users can create an account, update their information, and delete their account.
+
+### ⚠️ Error Handling
+
+The application includes robust error handling. If an error occurs, the application will return a helpful error message and, in development mode, a stack trace.
+
+## 🎯 Purpose
 
 The purpose of this application is to provide a simple and efficient way to manage and search for recipes.
 
@@ -48,11 +59,60 @@ The server will start, and you should see a message like <span style="color:gree
 
 4. **Test the Application**: You can now test the application by sending requests to <span style="color:green"><strong>http://localhost:8080/api/recipes</strong></span>. You can use a tool like Postman to send HTTP requests.
 
-# 🌐 Recipe API Endpoint Guide
+# 👥 User API Endpoint Guide
+
+This API allows you to manage users. Here's how you can use the endpoints:
+
+## 📚 Get All Users
+
+**Endpoint:** `/api/users`
+
+**Method:** `GET`
+
+**Description:** Returns all users.
+
+## ➕ Create a User
+
+**Endpoint:** `/api/users`
+
+**Method:** `POST`
+
+**Description:** Creates a new user.
+
+**Body:**
+
+- `name`: The name of the user (required).
+- `email`: The email of the user (required).
+- `password`: The password of the user (required).
+
+## 🔄 Update a User
+
+**Endpoint:** `/api/users/:id`
+
+**Method:** `PUT`
+
+**Description:** Updates an existing user.
+
+**Body:**
+
+- `name`: The new name of the user (optional).
+- `password`: The new password of the user (optional).
+
+Only the fields provided in the body will be updated.
+
+## ❌ Delete a User
+
+**Endpoint:** `/api/users/:id`
+
+**Method:** `DELETE`
+
+**Description:** Deletes an existing user.
+
+# 🍽️ Recipe API Endpoint Guide
 
 This API allows you to manage recipes. Here's how you can use the endpoints:
 
-## Get All Recipes
+## 📚 Get All Recipes
 
 **Endpoint:** `/api/recipes`
 
@@ -60,7 +120,7 @@ This API allows you to manage recipes. Here's how you can use the endpoints:
 
 **Description:** Returns all recipes.
 
-## Get a Specific Recipe by ID
+## 🔍 Get a Specific Recipe by ID
 
 **Endpoint:** `/api/recipes/:id`
 
@@ -72,7 +132,7 @@ This API allows you to manage recipes. Here's how you can use the endpoints:
 
 - `id`: The ID of the recipe.
 
-## Get Recipes by Name
+## 📖 Get Recipes by Name
 
 **Endpoint:** `/api/recipes/name/:name`
 
@@ -84,7 +144,7 @@ This API allows you to manage recipes. Here's how you can use the endpoints:
 
 - `name`: The name of the recipe.
 
-## Get Recipes by Tag
+## 🏷️ Get Recipes by Tag
 
 **Endpoint:** `/api/recipes/tag/:tag`
 
@@ -96,7 +156,7 @@ This API allows you to manage recipes. Here's how you can use the endpoints:
 
 - `tag`: The tag of the recipe.
 
-## Create a New Recipe
+## ➕ Create a New Recipe
 
 **Endpoint:** `/api/recipes`
 
@@ -111,7 +171,7 @@ This API allows you to manage recipes. Here's how you can use the endpoints:
 - `steps`: The steps of the recipe (required).
 - `tag`: The tags of the recipe (optional).
 
-## Update a Recipe
+## 🔄 Update a Recipe
 
 **Endpoint:** `/api/recipes/:id`
 
@@ -130,7 +190,7 @@ This API allows you to manage recipes. Here's how you can use the endpoints:
 - `steps`: The steps of the recipe (optional).
 - `tag`: The tags of the recipe (optional).
 
-## Delete a Recipe
+## ❌ Delete a Recipe
 
 **Endpoint:** `/api/recipes/:id`
 
@@ -150,15 +210,11 @@ This project uses several dependencies to function correctly. Here's a brief des
 
 ### 🚀 Express
 
-**Version:** ^4.18.2
-
 **Description:** Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
 
 **Usage:** In this project, Express is used to create the server and manage the API routes.
 
 ### 🔍 Joi
-
-**Version:** ^17.12.1
 
 **Description:** Joi is a powerful schema description language and data validator for JavaScript.
 
@@ -167,8 +223,6 @@ This project uses several dependencies to function correctly. Here's a brief des
 ## DevDependencies
 
 ### 🔄 Nodemon
-
-**Version:** ^3.0.3
 
 **Description:** Nodemon is a utility that will monitor for any changes in your source and automatically restart your server.
 
