@@ -168,13 +168,16 @@ app.post("/api/users", (req, res) => {
     password: Joi.string().min(8).required(),
   });
 
+  // Validate request body
   const { error } = schema.validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
+  // Check if email already exists
   const emailExists = users.find((user) => user.email === req.body.email);
   if (emailExists)
     return res.status(400).send("User with this email already exists.");
 
+  // Create new user
   const user = {
     id: users.length + 1,
     name: req.body.name,
@@ -199,13 +202,18 @@ app.put("/api/users/:id", (req, res) => {
     password: Joi.string(),
   });
 
+  // Validate request body
   const { error } = schema.validate(req.body);
   if (error) return res.status(400).send({ message: error.details[0].message });
 
+  // Create a copy of the original user
   const oldUser = { ...user };
+
+  // Update user fields if they are present in the request body
   if (req.body.name) user.name = req.body.name;
   if (req.body.password) user.password = req.body.password;
 
+  // Track changes between the old and updated user
   const changes = {};
   for (const key in oldUser) {
     if (oldUser[key] !== user[key]) {
@@ -227,9 +235,12 @@ app.delete("/api/users/:id", (req, res) => {
   const user = users.find((u) => u.id === parseInt(req.params.id));
   if (!user) return res.status(404).send({ message: "User not found." });
 
+  // Find index of user
   const index = users.indexOf(user);
+  // Remove user from array
   users.splice(index, 1);
 
+  // Send response
   res.send({
     message: `User with ID ${user.id} has been deleted.`,
     deletedUser: user,
